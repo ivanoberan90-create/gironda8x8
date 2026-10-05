@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="hr">
+<head>
+<meta charset="utf-8">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gironda 8×8 · Antonia</title>
+<style>
+:root{--bg:#F2F4F8;--card:#fff;--ink:#101828;--mute:#667085;--line:#DDE2EA;--acc:#2540D9;--on:#fff;--ok:#12805C;--okbg:#E2F4EC;--err:#B42318;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0E1320;--card:#171E2E;--ink:#EEF1F7;--mute:#9AA4B8;--line:#263047;--acc:#8EA2FF;--on:#0E1320;--ok:#4FD1A1;--okbg:#12332A;--err:#FF8A80}}
+:root[data-theme="dark"]{--bg:#0E1320;--card:#171E2E;--ink:#EEF1F7;--mute:#9AA4B8;--line:#263047;--acc:#8EA2FF;--on:#0E1320;--ok:#4FD1A1;--okbg:#12332A;--err:#FF8A80}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-padding-bottom:140px}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.4 "Avenir Next","Segoe UI",system-ui,sans-serif;padding:0 16px 120px;max-width:560px;margin-inline:auto}
+header{padding:20px 0 8px}
+header h1{font-size:26px;font-weight:800;margin:0;letter-spacing:-.01em}
+header p{margin:2px 0 0;color:var(--mute);font-size:14px}
+.row{display:flex;gap:6px;margin:12px 0}
+.row button{flex:1;min-width:0;padding:10px 0;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;font:inherit;font-weight:700;cursor:pointer}
+.row button.on{background:var(--acc);color:var(--on);border-color:var(--acc)}
+.bn{margin:0;padding:10px 12px;border-left:4px solid var(--acc);background:var(--card);border-radius:8px;font-size:14px}
+.sb{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.lab{font-size:13px;color:var(--mute);margin:14px 0 0}
+main h1{font-size:22px;margin:18px 0 0;font-weight:800}
+main h2{font-size:17px;margin:22px 0 2px;font-weight:800}
+.r{margin:0 0 10px;color:var(--mute);font-size:14px}
+article{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin:10px 0}
+.top{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.top h3{margin:0;font-size:16px;font-weight:700}
+.v{font-weight:800;color:var(--acc);white-space:nowrap}
+.h{margin:4px 0 0;color:var(--mute);font-size:13px}
+.in{display:flex;align-items:flex-end;gap:10px;margin-top:10px}
+.in label{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--mute);flex:1}
+.in label:first-child{flex:0 0 96px}
+.in span{padding-bottom:12px;color:var(--mute)}
+.in input{width:100%;padding:11px 10px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font-weight:700;font-size:18px;line-height:1;font-family:inherit;font-variant-numeric:tabular-nums}
+input:focus-visible,button:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+.sg{margin:10px 0 0;color:var(--acc);font-size:14px;font-weight:600}
+.u{margin-top:8px;padding:9px 12px;border-radius:10px;border:1px solid var(--acc);background:transparent;color:var(--acc);font:inherit;font-weight:700;cursor:pointer}
+.st{display:flex;gap:4px;margin-top:10px}
+.st button{flex:1;min-width:0;height:40px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--mute);font:inherit;font-weight:800;cursor:pointer}
+.st button.on{background:var(--acc);color:var(--on);border-color:var(--acc)}
+.er{margin:8px 0 0;color:var(--err);font-size:13px;font-weight:700}
+.in input.bad{border-color:var(--err)}
+.nt{width:100%;height:84px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:10px;font-size:16px;line-height:1.4;font-family:inherit}
+#wn{border-left-color:var(--err);margin:8px 0}
+.ok{margin:10px 0 0;padding:8px 10px;background:var(--okbg);color:var(--ok);border-radius:10px;font-weight:700;font-size:14px}
+.ck{display:flex;gap:10px;align-items:center;margin-top:10px;font-weight:600}
+.ck input{width:22px;height:22px}
+.rep{margin-top:26px}
+.rep button{width:100%;padding:13px;border-radius:12px;border:1px solid var(--acc);background:transparent;color:var(--acc);font:inherit;font-weight:800;cursor:pointer}
+.rep textarea{width:100%;height:160px;margin-top:10px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:10px;font-size:16px;line-height:1.4;font-family:inherit}
+.rep p{margin:8px 0 0;color:var(--mute);font-size:13px}
+footer{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--line);padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px))}
+footer div{max-width:560px;margin:0 auto;display:flex;gap:8px;align-items:center}
+footer button{flex:1;padding:14px 0;border-radius:12px;border:0;background:var(--acc);color:var(--on);font:inherit;font-weight:800;font-size:16px;cursor:pointer}
+footer button small{display:block;font-size:12px;font-weight:600;opacity:.85;margin-top:2px}
+footer button.g{background:var(--bg);color:var(--ink);border:1px solid var(--line);flex:0 0 90px}
+footer strong{flex:1;font-size:34px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1}
+footer strong small{font-size:15px;color:var(--mute);font-weight:600;margin-left:4px}
+</style>
+</head>
+<body>
+<header><h1>Gironda 8×8</h1><p>Antonia · Faza 4 · 8 tjedana</p></header>
+<p class="bn" id="wn" hidden></p>
+<p class="lab">Tjedan</p><div class="row" id="wk"></div>
+<p class="bn" id="bn"></p>
+<p class="bn" id="sn" hidden></p>
+<p class="lab">Dan</p><div class="row" id="dy"></div>
+<main id="m"></main>
+<div class="rep"><p class="lab" id="rl"></p><button id="ml">Pošalji izvještaj e-mailom treneru</button><div id="tx"></div></div>
+<div class="rep"><button id="bk">Sigurnosna kopija podataka</button><div id="bx"></div></div>
+<footer><div id="f"></div></footer>
+<script>
+const D=[
+{k:'Pon',t:'Dan 1 · Noge i trbuh A',x:[
+['s1','Smith machine squat','8×8','b',null,'Nakon duže pauze: u 1. tjednu kreni lakše, pazi na tehniku.',2.5],
+['r1','Romanian deadlift','8×8','b',57.5,'Tehnika ispred kilaže. Plan B: ako popuste donja leđa ili hvat, spusti kilažu; ako ne pomaže, radi 4×8 s odmorom 60 s i označi kućicu "Radila sam Plan B".',2.5],
+['bu','Bugarski split čučanj (po nozi)','3×10','a',null,'Upiši kg po bučici.',2],
+['lc','Leg curl (mašina)','3×12','a',null,null,2.5],
+['hl','Hanging leg raise','4×15','c'],
+['cc','Cable crunch','4×15','c']]},
+{k:'Uto',t:'Dan 2 · Prsa i leđa',x:[
+['bp','Bench press (ravna klupa)','8×8','b',null,'Nakon duže pauze: u 1. tjednu kreni lakše, pazi na tehniku.',2.5],
+['lp','Lat pulldown','8×8','b',45,null,2.5],
+['ip','Incline dumbbell press','3×12','a',null,'Upiši kg po bučici.',2],
+['cr','Cable row (uska hvat)','3×12','a',null,null,2.5],
+['fp','Face pull','3×15','a',null,null,2.5]]},
+{k:'Čet',t:'Dan 3 · Noge i trbuh B',x:[
+['ht','Hip thrust (palica)','8×8','b',null,null,5],
+['hs','Hack squat','8×8','b',null,'Kilaža na spravi.',2.5],
+['ha','Hip abduction (mašina)','3×15','a',null,null,2.5],
+['cf','Standing calf raise','3×15','a',null,null,2.5],
+['aw','Ab wheel rollout','4×10','c'],
+['pl','Plank (45 s)','4×45 s','c']]},
+{k:'Pet',t:'Dan 4 · Ramena i trbuh',x:[
+['oh','Overhead press (stojeći)','8×8','b',null,'Nakon duže pauze: u 1. tjednu kreni lakše, pazi na tehniku.',2.5],
+['lr','Bočno podizanje bučica','8×8','b',null,'Upiši kg po bučici.',1],
+['rd','Zadnja ramena (pec deck obrnuto)','3×15','a',null,null,2.5],
+['pa','Pallof press (po strani)','3×12','c'],
+['sp','Bočni plank (po strani)','3×30 s','c']]}
+];
+const E={};D.forEach(d=>d.x.forEach(e=>E[e[0]]=e));
+const PB=new Set(['r1']);               /* vježbe s kućicom "Plan B" */
+const $=s=>document.querySelector(s);
+const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const fm=n=>String(n).replace('.',',');
+const fm2=t=>t.replace(/(\d)\.(\d)/g,'$1,$2');
+const ISB=e=>e[3]=='b';
+let S={w:1,d:0,log:{},sent:{}},WARN='',saveOK=true,PEND=false;
+/* provjera i čišćenje podataka (učitavanje i vraćanje kopije) */
+function san(o){
+ if(!o||typeof o!='object'||!o.log||typeof o.log!='object'||Array.isArray(o.log))return null;
+ const X={w:Math.min(8,Math.max(1,Math.round(+o.w)||1)),d:Math.min(3,Math.max(0,Math.round(+o.d)||0)),log:{},sent:{}};
+ for(const w of Object.keys(o.log)){
+  const wn=+w;if(!Number.isInteger(wn)||wn<1||wn>8||!o.log[w]||typeof o.log[w]!='object')return null;
+  for(const id of Object.keys(o.log[w])){
+   const g=o.log[w][id],e=E[id],aux=/^(wu|n)[0-3]$/.test(id);
+   if(!(e||aux)||!g||typeof g!='object')return null;
+   const c={};
+   if(g.done!=null){if(typeof g.done!='boolean')return null;c.done=g.done}
+   if(g.plan!=null){if(typeof g.plan!='boolean')return null;c.plan=g.plan}
+   if(g.note!=null){if(typeof g.note!='string'||g.note.length>300)return null;c.note=g.note}
+   if(g.kg!=null){if(typeof g.kg!='number'||!(g.kg>=0&&g.kg<=500))return null;c.kg=g.kg}
+   if(g.reps!=null){if(!Number.isInteger(g.reps)||g.reps<0||g.reps>(e&&ISB(e)?64:50))return null;c.reps=g.reps}
+   if(g.sets!=null){if(!Number.isInteger(g.sets)||g.sets<0||g.sets>8)return null;c.sets=g.sets}
+   (X.log[wn]=X.log[wn]||{})[id]=c;
+  }
+ }
+ if(o.sent!=null){if(typeof o.sent!='object'||Array.isArray(o.sent))return null;
+  for(const k of Object.keys(o.sent)){const kn=+k;if(!Number.isInteger(kn)||kn<1||kn>8||typeof o.sent[k]!='number')return null;X.sent[kn]=o.sent[k]}}
+ return X;
+}
+try{localStorage.setItem('g88t','1');localStorage.removeItem('g88t')}catch(e){saveOK=false}
+try{const r=localStorage.getItem('g88');if(r){let x=null;try{x=san(JSON.parse(r))}catch(e){}if(x)S=x;else WARN='Spremljeni podaci su oštećeni i nisu učitani.'}}catch(e){WARN='Preglednik ne dopušta čitanje spremljenih podataka.'}
+function warn(){const w=$('#wn');if(!w)return;const m=!saveOK?'Spremanje nije uspjelo: unosi se neće sačuvati na ovom mobitelu. Pošalji izvještaj čim završiš i provjeri da nisi u privatnom prozoru.':WARN;w.hidden=!m;w.textContent=m||''}
+function save(){try{localStorage.setItem('g88',JSON.stringify(S));saveOK=true}catch(e){saveOK=false}warn()}
+const get=(w,id)=>(S.log[w]||{})[id]||{};
+const has=w=>Object.values(S.log[w]||{}).some(g=>g&&(g.kg||g.reps||g.done||g.sets||g.note));
+function prev(id){for(let w=S.w-1;w>=1;w--){const g=get(w,id);if(g.kg||g.reps)return g}return null}
+/* stvarni plan za odabrani tjedan: broj serija i cilj ponavljanja */
+const tgS=(e,g)=>ISB(e)?((S.w==7||g.plan)?4:8):0;
+const tgR=(e,g)=>ISB(e)?tgS(e,g)*8:+((e[2].match(/×(\d+)/)||[])[1]);
+const vol=(e,g)=>ISB(e)?(tgS(e,g)==4?'4×8'+(g.plan&&S.w!=7?' (Plan B)':''):'8×8'):(S.w==7?e[2].replace(/^\d+/,'2'):e[2]);
+const ERR={};
+function chk(e,f,raw){
+ raw=raw.trim();if(raw==='')return{v:null};
+ if(f=='kg'){if(!/^\d{1,3}([.,]\d{1,2})?$/.test(raw))return{err:'Upiši broj, npr. 42,5.'};const v=parseFloat(raw.replace(',','.'));return v>500?{err:'Kilaža mora biti do 500 kg.'}:{v}}
+ const mx=ISB(e)?tgR(e,get(S.w,e[0])):50;
+ if(!/^\d{1,2}$/.test(raw)||+raw>mx)return{err:`Upiši cijeli broj od 0 do ${mx}.`};
+ return{v:+raw};
+}
+function sug(e,p){
+ const [id,n,v,ty,st,note,step]=e,g=get(S.w,id),tgt=tgR(e,g);
+ if(S.w>=7&&ty!='c'){
+  const b=get(6,id);
+  if(!(b&&b.kg))return{kg:null,msg:'Referenca iz 6. tjedna nedostaje. Upiši kilažu koju si koristila u 6. tjednu.'};
+  return{kg:b.kg,msg:S.w==7?`Olakšani tjedan: ${ty=='b'?'4 serije od 8':'2 serije'}, ista kilaža kao u 6. tjednu (${b.kg} kg).`:(ty=='b'?`Završni test: 8×8 s ${b.kg} kg (kilaža iz 6. tjedna), cilj ${tgt}.`:`Kilaža iz 6. tjedna (${b.kg} kg), cilj ${tgt} ponavljanja.`)};
+ }
+ const s=step||2.5;
+ if(!p||!p.kg)return{first:1,kg:st||null,msg:ty=='b'?'Nađi kilažu: prvih ~5 serija ide 8 ponavljanja, zadnje 3 padnu na 6–7.'+(st?` Referenca: ${st} kg.`:''):(st?`Referenca: ${st} kg.`:'Nađi kilažu uz koju zadnja serija ide teško, ali čisto.')};
+ if(p.plan)return{kg:p.kg,msg:`Prošli put Plan B (4×8) s ${p.kg} kg. Ostani na ${p.kg} kg i probaj redovni 8×8.`};
+ const pt=ty=='b'?64:tgt;
+ if(p.reps>=pt){const k=Math.round((p.kg+s)*100)/100;return{kg:k,msg:`Prošli put ${p.kg} kg × ${p.reps}. Probaj ${k} kg.`}}
+ return{kg:p.kg,msg:`Ostani na ${p.kg} kg, cilj ${pt} (prošli put ${p.reps||'–'}).`};
+}
+function okTxt(g,s){
+ if(S.w==7)return 'olakšani tjedan odrađen.';
+ if(g.plan)return 'Plan B odrađen. Sljedeći put probaj redovni 8×8 s istom kilažom.';
+ if(S.w==8)return 'završni test prođen.';
+ if(S.w==6)return g.kg?`sljedeći tjedan je olakšani, kilaža ostaje ${fm(g.kg)} kg.`:'sljedeći tjedan je olakšani.';
+ return g.kg?`sljedeći tjedan ${fm(Math.round((g.kg+s)*100)/100)} kg.`:'sljedeći put povećaj kilažu.';
+}
+function dyn(e){
+ const [id,n,v,ty,st,note,step]=e,g=get(S.w,id),q=sug(e,prev(id)),tg=tgR(e,g),ok=ty=='b'&&g.reps!=null&&g.reps>=tg;
+ return ['kg','reps'].map(f=>ERR[id+'|'+f]).filter(Boolean).map(m=>`<p class="er">${m}</p>`).join('')+((q.first&&g.kg!=null)?'':`<p class="sg">${fm2(q.msg)}</p>`)
+  +((q.kg!=null&&g.kg==null)?`<button class="u" data-fill="${id}" data-v="${q.kg}">Upiši ${fm(q.kg)} kg</button>`:'')
+  +(ok?`<p class="ok">${tg}/${tg} – ${okTxt(g,step||2.5)}</p>`:'');
+}
+function setsHTML(e,g){const n=tgS(e,g),c=Math.min(g.sets||0,n);
+ return Array.from({length:n},(_,i)=>`<button class="${i<c?'on':''}" data-set="${e[0]}" data-n="${i+1}" aria-pressed="${i<c}" aria-label="Serija ${i+1}">${i+1}</button>`).join('')}
+function card(e){
+ const [id,n,v,ty,st,note,step]=e,g=get(S.w,id),q=sug(e,prev(id));let b;
+ if(ty=='c')b=`<label class="ck"><input type="checkbox" data-id="${id}" data-f="done"${g.done?' checked':''}> Odrađeno</label>`;
+ else b=(ty=='b'?`<div class="st" data-sets="${id}">${setsHTML(e,g)}</div>`:'')
+  +`<div class="in"><label>kg<input type="text" inputmode="decimal" autocomplete="off" class="${ERR[id+'|kg']?'bad':''}" data-id="${id}" data-f="kg" value="${g.kg==null?'':fm(g.kg)}" placeholder="${q.kg==null?'':fm(q.kg)}"></label><span>×</span><label>${ty=='b'?`ukupno ponavljanja (cilj ${tgR(e,g)})`:'ponavljanja (najslabija serija)'}<input type="text" inputmode="numeric" autocomplete="off" class="${ERR[id+'|reps']?'bad':''}" data-id="${id}" data-f="reps" value="${g.reps==null?'':g.reps}"></label></div>`
+  +(ty=='b'&&PB.has(id)&&S.w!=7?`<label class="ck"><input type="checkbox" data-id="${id}" data-f="plan"${g.plan?' checked':''}> Radila sam Plan B (4×8, odmor 60 s)</label>`:'')
+  +`<div data-dyn="${id}">${dyn(e)}</div>`;
+ return `<article><div class="top"><h3>${n}</h3><span class="v">${vol(e,g)}</span></div>${(note&&!(S.w!=1&&/^Nakon duže pauze/.test(note)))?`<p class="h">${note}</p>`:''}${b}</article>`;
+}
+const BN={1:'Tjedan 1 · kalibracija: nađi kilažu s kojom prvih ~5 serija ide 8 ponavljanja, a zadnje 3 padnu na 6–7. Pazi na čistu tehniku.',7:'Tjedan 7 · olakšani tjedan: 4 serije umjesto 8, akcesorne i trbuh 2 serije, ista kilaža kao u 6. tjednu. Cilj je oporavak.',8:'Tjedan 8 · završni test: 8×8 s kilažom iz 6. tjedna, cilj 64 ponavljanja.'};
+function render(){
+ for(const k of Object.keys(ERR))delete ERR[k];
+ $('#wk').innerHTML=[1,2,3,4,5,6,7,8].map(n=>`<button data-w="${n}" class="${n==S.w?'on':''}">${n}</button>`).join('');
+ $('#dy').innerHTML=D.map((d,i)=>`<button data-d="${i}" class="${i==S.d?'on':''}">${d.k}</button>`).join('');
+ $('#bn').textContent=BN[S.w]||`Tjedan ${S.w} · napredovanje: kad izvedeš svih 64 ponavljanja, sljedeći put povećaj kilažu.`;
+ const sent=(S.sent||{})[S.w];
+ $('#rl').textContent=`Izvještaj tjedna ${S.w}`+(sent?' · označen kao poslan':'');
+ const un=[1,2,3,4,5,6,7,8].filter(x=>x<S.w&&has(x)&&!(S.sent||{})[x]),sn=$('#sn');
+ if(un.length){sn.hidden=false;sn.innerHTML=`Izvještaj tjedna ${un[0]} još nije poslan treneru. <button class="u" data-sw="${un[0]}">Pošalji tjedan ${un[0]}</button>`}
+ else if(S.d==3&&has(S.w)&&!sent){sn.hidden=false;sn.textContent='Zadnji trening tjedna: pošalji izvještaj treneru (gumb pri dnu).'}
+ else sn.hidden=true;
+ const d=D[S.d],f=d.x.find(e=>e[3]=='b'),w=S.w;
+ const sec=(ty,h,r)=>{const xs=d.x.filter(e=>e[3]==ty);return xs.length?`<h2>${h}</h2><p class="r">${r}</p>`+xs.map(card).join(''):''};
+ $('#m').innerHTML=`<h1>${d.t}</h1>`
+  +`<h2>Zagrijavanje</h2><p class="r">5 min lagano kardio, zatim 2 lakše serije prve vježbe (${f[1]}): 10 ponavljanja s ~50% radne kilaže i 5 ponavljanja s ~70%. Ne računaju se u 8×8.</p><article><label class="ck"><input type="checkbox" data-id="wu${S.d}" data-f="done"${get(w,'wu'+S.d).done?' checked':''}> Zagrijavanje odrađeno</label></article>`
+  +sec('b','8×8 blok',w==7?'Olakšani tjedan: 4 serije po 8 ponavljanja, ista kilaža kao u 6. tjednu, odmor 30 s.':w==8?'Završni test: 8 serija po 8 ponavljanja s kilažom iz 6. tjedna, odmor 30 s. Cilj 64.':'8 serija po 8 ponavljanja, ista kilaža, odmor 30 s. Kad izvedeš svih 64, sljedeći put povećaj kilažu. Dodirni broj serije nakon svake serije (neobavezno).')
+  +sec('a','Akcesorno',w==7?'Olakšani tjedan: 2 serije po vježbi, odmor 60 s. Ista kilaža.':'Odmor 60 s. Upiši kilažu i ponavljanja.')
+  +sec('c','Trbuh',w==7?'Olakšani tjedan: 2 serije po vježbi. Označi kad odradiš.':'Označi kad odradiš.')
+  +`<h2>Napomena za trening</h2><textarea class="nt" maxlength="300" data-id="n${S.d}" data-f="note" placeholder="Neobavezno: npr. smanjila kilažu, sprava zauzeta…">${esc(get(w,'n'+S.d).note||'')}</textarea>`;
+ warn();
+}
+/* štoperica za odmor */
+let end=0,T=null,flash=0,AC=null;
+function foot(){
+ const l=Math.max(0,Math.ceil((end-Date.now())/1000));
+ const btns=`<button data-rest="30">Odmor 30 s<small>8×8 blok</small></button><button data-rest="60">Odmor 60 s<small>akcesorno</small></button>`;
+ $('#f').innerHTML=T?`<strong>${l}<small>s odmora</small></strong><button class="g" data-stop>Stop</button>`
+  :(Date.now()<flash?`<strong style="color:var(--acc);font-size:22px">Kreni!</strong>`+btns:btns);
+}
+function beep(){
+ try{navigator.vibrate&&navigator.vibrate([200,100,200])}catch(e){}
+ try{if(AC){AC.resume&&AC.resume();const o=AC.createOscillator(),g=AC.createGain();o.connect(g);g.connect(AC.destination);o.frequency.value=880;g.gain.value=.3;o.start();o.stop(AC.currentTime+.4)}}catch(e){}
+}
+function stop(){clearInterval(T);T=null;foot()}
+let WL=null;async function wl(){try{if('wakeLock' in navigator&&!WL){WL=await navigator.wakeLock.request('screen');WL.addEventListener('release',()=>{WL=null})}}catch(e){}}
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)wl()});
+function rest(s){wl();
+ try{if(!AC)AC=new(window.AudioContext||window.webkitAudioContext)();AC.resume&&AC.resume()}catch(e){}
+ clearInterval(T);end=Date.now()+s*1000;
+ T=setInterval(()=>{if(Date.now()>=end){stop();beep();flash=Date.now()+4000;foot();setTimeout(foot,4100)}else foot()},250);foot();
+}
+
+/* izvještaj */
+const TR={mail:'ivan.oberan90@gmail.com'}; /* adresa trenera */
+function report(){
+ const tg={7:' · olakšani tjedan',8:' · završni test'}[S.w]||'';
+ let n=0,o=`Antonia · Gironda 8×8 · tjedan ${S.w}${tg}\n`;
+ D.forEach((d,i)=>{
+  const r=[];if(get(S.w,'wu'+i).done)r.push('Zagrijavanje: odrađeno');
+  d.x.forEach(e=>{const g=get(S.w,e[0]);
+   if(e[3]=='c'){if(g.done)r.push(`${e[1]}: odrađeno`);return}
+   if(g.kg==null&&g.reps==null)return;
+   const kg=g.kg!=null?fm(g.kg):'–',rp=g.reps!=null?g.reps:'–';
+   r.push(e[3]=='b'?`${e[1]}: ${kg} kg · ukupno ${rp}/${tgR(e,g)} ponavljanja${g.plan&&S.w!=7?' (Plan B: 4×8, odmor 60 s)':''}${g.sets?` · serije ${Math.min(g.sets,tgS(e,g))}/${tgS(e,g)}`:''}`:`${e[1]}: ${kg} kg · najslabija serija: ${rp} ponavljanja`);
+  });
+  const nt=(get(S.w,'n'+i).note||'').trim();if(nt)r.push('Napomena: '+nt);
+  if(r.length){n++;o+=`\n${d.t}\n`+r.join('\n')+'\n'}
+ });
+ if(!n)o+='\nNema unosa za ovaj tjedan.\n';
+ return o;
+}
+function mark(w){S.sent=S.sent||{};S.sent[w]=Date.now();save();render()}
+function out(){
+ const txt=report(),sub=`Gironda 8×8 · tjedan ${S.w}`;
+ $('#tx').innerHTML=`<p>E-mail je pripremljen. Ako se nije otvorio, kopiraj tekst i pošalji ga na ${TR.mail}. Kad ga pošalješ, dodirni "Poslala sam".</p><button id="sd">Poslala sam</button><textarea readonly></textarea>`;
+ $('#tx textarea').value=txt;
+ window.open(`mailto:${TR.mail}?subject=${encodeURIComponent(sub)}&body=${encodeURIComponent(txt)}`,'_self');
+}
+/* unos: spremanje pri svakom tipkanju, strogo provjeren */
+function apply(t,commit){
+ const id=t.dataset&&t.dataset.id,f=t.dataset&&t.dataset.f;if(!id)return;
+ const l=S.log[S.w]=S.log[S.w]||{},g=l[id]=l[id]||{};
+ if(t.type=='checkbox'){g[f]=t.checked;save();if(f=='plan')render();return}
+ if(f=='note'){g.note=t.value.slice(0,300);save();return}
+ const e=E[id];if(!e)return;
+ const r=chk(e,f,t.value);
+ if(r.err){ERR[id+'|'+f]=r.err;g[f]=null;t.classList.add('bad')}
+ else{delete ERR[id+'|'+f];t.classList.remove('bad');g[f]=r.v;if(commit&&r.v!==null&&f=='kg')t.value=fm(r.v)}
+ save();const el=$('[data-dyn="'+id+'"]');if(el)el.innerHTML=dyn(e);
+}
+document.addEventListener('input',e=>{if(e.target.id=='br'){PEND=false;$('#rs').textContent='Vrati iz kopije';return}apply(e.target,false)});
+document.addEventListener('change',e=>apply(e.target,true));
+document.addEventListener('click',e=>{
+ const t=e.target.closest('button');if(!t)return;
+ if(t.dataset.w){S.w=+t.dataset.w;save();render()}
+ else if(t.dataset.d){S.d=+t.dataset.d;save();render();scrollTo(0,0)}
+ else if(t.dataset.set){const id=t.dataset.set,n=+t.dataset.n,l=S.log[S.w]=S.log[S.w]||{},g=l[id]=l[id]||{};g.sets=(g.sets===n)?n-1:n;save();const el=$('[data-sets="'+id+'"]');if(el)el.innerHTML=setsHTML(E[id],g)}
+ else if(t.dataset.fill){const l=S.log[S.w]=S.log[S.w]||{},g=l[t.dataset.fill]=l[t.dataset.fill]||{};g.kg=+t.dataset.v;save();render()}
+ else if(t.dataset.sw){S.w=+t.dataset.sw;save();render();document.querySelector('.rep').scrollIntoView()}
+ else if(t.dataset.rest)rest(+t.dataset.rest);
+ else if('stop' in t.dataset)stop();
+ else if(t.id=='ml')out();
+ else if(t.id=='sd'){mark(S.w);$('#tx').innerHTML='<p>Označeno kao poslano.</p>'}
+ else if(t.id=='bk'){
+  $('#bx').innerHTML='<p>Podaci se čuvaju samo na ovom mobitelu. Kopiraj tekst ispod i spremi ga (npr. pošalji sebi). Njime kasnije vratiš sve unose.</p><textarea id="bt" readonly></textarea><p>Vraćanje: zalijepi kopiju u donje polje i dodirni "Vrati".</p><textarea id="br"></textarea><button id="rs">Vrati iz kopije</button><p id="bm"></p>';
+  const a=$('#bt');a.value=JSON.stringify(S);a.focus();a.select();
+ }
+ else if(t.id=='rs'){
+  let o=null;try{o=san(JSON.parse($('#br').value))}catch(x){}
+  if(!o){PEND=false;t.textContent='Vrati iz kopije';$('#bm').textContent='Kopija nije ispravna. Postojeći unosi nisu promijenjeni.';return}
+  if(Object.keys(S.log).some(w=>has(+w))&&!PEND){PEND=true;t.textContent='Potvrdi zamjenu';$('#bm').textContent='Kopija je ispravna. Vraćanje zamjenjuje sve postojeće unose. Dodirni "Potvrdi zamjenu".';return}
+  S=o;PEND=false;save();render();t.textContent='Vrati iz kopije';$('#bm').textContent='Podaci su vraćeni.';
+ }
+});
+render();foot();
+</script>
+</body>
+</html>
